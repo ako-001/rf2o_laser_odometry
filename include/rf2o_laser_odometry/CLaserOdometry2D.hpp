@@ -70,7 +70,7 @@ using MatrixS31 = Eigen::Matrix<Scalar, 3, 1>;
 using IncrementCov = Eigen::Matrix<Scalar, 3, 3>;
 
 
-class CLaserOdometry2D: public rclcpp::Node
+class CLaserOdometry2D
 {
 public:
 
@@ -92,6 +92,8 @@ public:
   Pose3d& getPose();
   const Pose3d& getPose() const;
   bool verbose, module_initialized, first_laser_scan;
+  rclcpp::Logger logger_{rclcpp::get_logger("CLaserOdometry2D")};
+  rclcpp::Clock steady_clock_{RCL_STEADY_TIME};
   rclcpp::Time last_odom_time, current_scan_time;
 
   // Internal Data
